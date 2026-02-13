@@ -312,6 +312,7 @@ async function build() {
   const postTemplate = readFileSync(join(TEMPLATES_DIR, 'post.html'), 'utf-8');
 
   // Process posts
+  mkdirSync(POSTS_DIR, { recursive: true });
   const posts = [];
   const files = readdirSync(POSTS_DIR).filter((f) => f.endsWith('.mdx'));
 
