@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#1A1A1A"/>
+  <rect x="80" y="80" width="64" height="64" rx="8" fill="#C4553A"/>
+  <text x="112" y="122" text-anchor="middle" font-family="'Space Mono', monospace" font-size="24" font-weight="700" letter-spacing="2" fill="#FFFFFF">WA</text>
+  <text x="80" y="220" font-family="'Space Mono', monospace" font-size="48" font-weight="700" fill="#F0EDED">Waju Abolarin</text>
+  <text x="80" y="290" font-family="'Space Mono', monospace" font-size="24" font-weight="700" fill="#C4553A">STAFF SOFTWARE ENGINEER</text>
+  <text x="80" y="360" font-family="'Space Mono', monospace" font-size="20" fill="#A0A0A0">Writing about systems, software</text>
+  <text x="80" y="395" font-family="'Space Mono', monospace" font-size="20" fill="#A0A0A0">architecture, and building reliable software.</text>
+  <text x="80" y="560" font-family="'Space Mono', monospace" font-size="18" fill="#666666">waju.dev</text>
+</svg>

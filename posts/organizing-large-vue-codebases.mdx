@@ -1,0 +1,38 @@
+---
+title: "How I organize large Vue.js codebases"
+date: 2023-02-27
+description: "A practical file structure and naming convention for Vue apps that scale."
+---
+
+After working on Vue apps with 200+ components, I've settled on a structure that scales without becoming a maze.
+
+## Feature folders over type folders
+
+Don't organize by type (`components/`, `stores/`, `composables/`). Organize by feature. Everything related to authentication lives in `features/auth/` — components, composables, stores, types, and tests.
+
+```
+src/
+  features/
+    auth/
+      AuthForm.vue
+      useAuth.ts
+      auth.store.ts
+      auth.types.ts
+      __tests__/
+    dashboard/
+      DashboardView.vue
+      useMetrics.ts
+      widgets/
+  shared/
+    components/
+    composables/
+    utils/
+```
+
+## Shared vs feature code
+
+Code starts in a feature folder. Only move it to `shared/` when a second feature needs it. Premature abstraction into `shared/` creates a junk drawer that nobody wants to maintain.
+
+## Naming conventions
+
+Be boringly consistent. Components are PascalCase. Composables start with `use`. Stores end with `.store.ts`. Types end with `.types.ts`. Tests mirror source structure. When every file follows the same pattern, you can find anything without searching.

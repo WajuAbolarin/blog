@@ -1,0 +1,25 @@
+---
+title: "Reactive state management patterns in Vue 3"
+date: 2024-10-08
+description: "Practical patterns for managing complex state in Vue 3 with the Composition API."
+---
+
+Vue 3's Composition API changed how we think about state management. Here are the patterns that have worked well for our team.
+
+## Composables as state containers
+
+The simplest pattern is a composable that holds reactive state. No library needed.
+
+```typescript
+const state = reactive({ count: 0, items: [] })
+
+export function useCounter() {
+  const increment = () => state.count++
+  const decrement = () => state.count--
+  return { count: readonly(toRef(state, 'count')), increment, decrement }
+}
+```
+
+## When to reach for Pinia
+
+Composables work great for local or feature-scoped state. When you need devtools, SSR hydration, or state that multiple unrelated components share, Pinia is the right call. The key is knowing the boundary — don't reach for a state management library when a simple composable will do.

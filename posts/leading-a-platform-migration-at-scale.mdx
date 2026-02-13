@@ -1,0 +1,19 @@
+---
+title: "What I learned leading a platform migration at scale"
+date: 2024-08-14
+description: "Lessons from migrating a monolith to microservices without stopping feature development."
+---
+
+Last year I led the migration of our core payment processing system from a monolith to microservices. Here's what I'd tell past-me before starting.
+
+## Don't stop shipping features
+
+The biggest mistake teams make is treating a migration as a feature freeze. We ran both systems in parallel using the strangler fig pattern — new features went to the new system, old features got migrated incrementally.
+
+## Measure everything
+
+Before you migrate anything, instrument your current system thoroughly. You can't prove the new system works if you don't know how the old one behaves. We tracked latency percentiles, error rates, and throughput for every endpoint before touching a line of code.
+
+## The human side matters most
+
+Technical decisions were the easy part. Getting six teams aligned on a shared migration plan, managing the anxiety of changing a system that processes real money — that's where the real work happened.

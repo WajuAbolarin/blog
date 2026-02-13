@@ -1,0 +1,33 @@
+---
+title: "Implementing RxJS observables in Vuex actions"
+date: 2024-01-19
+description: "Bridging reactive streams with Vuex for complex async workflows."
+---
+
+Sometimes Vuex actions need to handle complex async flows — debouncing, retries, cancellation. RxJS handles these elegantly, but integrating it with Vuex requires some thought.
+
+## The bridge
+
+The key is treating Vuex actions as entry points that delegate to observable pipelines.
+
+```typescript
+actions: {
+  search({ commit }, query) {
+    return search$(query).pipe(
+      debounceTime(300),
+      switchMap(q => api.search(q)),
+      retry(2),
+    ).subscribe(results => {
+      commit('SET_RESULTS', results)
+    })
+  }
+}
+```
+
+## Cleanup matters
+
+The subscription returned by `subscribe()` must be cleaned up. We store active subscriptions in the module state and unsubscribe on component unmount. Leaking subscriptions is the number one footgun with this pattern.
+
+## Is it worth it?
+
+For most apps, no. `async/await` with a simple abort controller covers 90% of cases. But for apps with complex real-time data flows — dashboards, trading UIs, collaborative editors — RxJS in Vuex is a powerful pattern.

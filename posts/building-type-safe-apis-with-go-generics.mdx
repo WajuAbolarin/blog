@@ -1,0 +1,37 @@
+---
+title: "Building type-safe APIs with Go generics"
+date: 2024-11-22
+description: "Using Go 1.18+ generics to build type-safe HTTP handlers and middleware."
+---
+
+Go generics landed in 1.18 and after a year of cautious adoption, I've found them most useful in one place: API handlers.
+
+## The pattern
+
+Instead of passing `interface{}` around and hoping for the best, we can now define handlers that know their request and response types at compile time.
+
+```go
+func Handle[Req any, Res any](
+  handler func(ctx context.Context, req Req) (Res, error),
+) http.HandlerFunc {
+  return func(w http.ResponseWriter, r *http.Request) {
+    var req Req
+    if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+      http.Error(w, err.Error(), 400)
+      return
+    }
+    res, err := handler(r.Context(), req)
+    if err != nil {
+      http.Error(w, err.Error(), 500)
+      return
+    }
+    json.NewEncoder(w).Encode(res)
+  }
+}
+```
+
+The compiler catches type mismatches before you even run the code. No more runtime panics from bad type assertions.
+
+## Where generics don't help
+
+Don't use generics for everything. Simple interfaces are still clearer for most abstractions. Generics shine when you have identical logic operating on different concrete types — like our API handler pattern above.

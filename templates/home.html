@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waju Abolarin — Software Engineer</title>
+  <meta name="description" content="I write about systems, software architecture, and the craft of building reliable software. Currently based in Berlin.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Waju Abolarin">
+  <meta property="og:description" content="I write about systems, software architecture, and the craft of building reliable software.">
+  <meta property="og:url" content="https://waju.dev">
+  <meta property="og:site_name" content="Waju Abolarin">
+  <meta property="og:image" content="https://waju.dev/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Waju Abolarin">
+  <meta name="twitter:description" content="I write about systems, software architecture, and the craft of building reliable software.">
+  <meta name="twitter:image" content="https://waju.dev/og-home.png">
+  <meta name="twitter:creator" content="@waju_abolarin">
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Waju Abolarin" href="/rss.xml">
+  <link rel="canonical" href="https://waju.dev">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="header">
+    <a href="/" class="header-left">
+      <div class="monogram">WA</div>
+      <span class="header-name"><span class="header-name-full">Waju Abolarin</span><span class="header-name-short">Waju</span></span>
+    </a>
+    <nav class="nav">
+      <div class="nav-active"><a href="/">Blog</a></div>
+      <a href="https://github.com/WajuAbolarin">GitHub</a>
+      <a href="/rss.xml">RSS</a>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-sun">☀</span>
+        <span class="icon-moon">☾</span>
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-title">Software Engineer</div>
+    <p class="hero-description">I write about systems, software architecture, and the craft of building reliable software. Currently based in Berlin, working at Taxfix.</p>
+    <div class="hero-links">
+      <a href="https://github.com/WajuAbolarin">github.com/WajuAbolarin</a>
+      <span class="dot">&middot;</span>
+      <a href="https://waju.dev">waju.dev</a>
+      <span class="dot">&middot;</span>
+      <span class="location">Berlin, Germany</span>
+    </div>
+  </section>
+
+  <main class="posts-section">
+    {{POSTS}}
+  </main>
+
+  <footer class="footer">
+    <div class="footer-name">Waju Abolarin</div>
+    <div class="footer-links">
+      <a href="https://github.com/WajuAbolarin">GitHub</a>
+      <a href="https://twitter.com/waju_abolarin">Twitter</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="footer-location">Berlin, Germany</div>
+    <div class="footer-prompt">> waju@blog ~ $</div>
+  </footer>
+
+  <script>
+    document.querySelector('.theme-toggle').addEventListener('click', function() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>

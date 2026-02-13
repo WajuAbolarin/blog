@@ -1,0 +1,27 @@
+---
+title: "Authorization patterns for multi-tenant Vue apps"
+date: 2024-03-11
+description: "How we built a flexible permission system for a multi-tenant SaaS application in Vue."
+---
+
+Building authorization for a multi-tenant app is tricky. Each tenant has different roles, permissions vary by resource, and you need it all to feel fast in the UI.
+
+## The permission model
+
+We settled on a resource-based permission model: `can(user, action, resource)`. Actions are verbs like `read`, `write`, `delete`. Resources are scoped to a tenant.
+
+```typescript
+const can = (user, action, resource) => {
+  const role = user.roles[resource.tenantId]
+  if (!role) return false
+  return role.permissions.includes(`${resource.type}:${action}`)
+}
+```
+
+## Client-side guards
+
+Vue's navigation guards are the natural place to check permissions on route changes. But don't rely on them alone — always verify on the server. Client-side checks are for UX, not security.
+
+## Caching permissions
+
+Fetching permissions on every navigation is slow. We cache the user's permission set on login and invalidate on role changes via WebSocket events. This keeps the UI responsive while maintaining consistency.

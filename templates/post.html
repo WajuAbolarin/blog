@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}} — Waju Abolarin</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="https://waju.dev/posts/{{SLUG}}">
+  <meta property="og:site_name" content="Waju Abolarin">
+  <meta property="og:image" content="https://waju.dev/og/{{SLUG}}.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="{{DATE_ISO}}">
+  <meta property="article:author" content="Waju Abolarin">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TITLE}}">
+  <meta name="twitter:description" content="{{DESCRIPTION}}">
+  <meta name="twitter:image" content="https://waju.dev/og/{{SLUG}}.png">
+  <meta name="twitter:creator" content="@waju_abolarin">
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Waju Abolarin" href="/rss.xml">
+  <link rel="canonical" href="https://waju.dev/posts/{{SLUG}}">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="header">
+    <a href="/" class="header-left">
+      <div class="monogram">WA</div>
+      <span class="header-name"><span class="header-name-full">Waju Abolarin</span><span class="header-name-short">Waju</span></span>
+    </a>
+    <nav class="nav">
+      <a href="/">Blog</a>
+      <a href="https://github.com/WajuAbolarin">GitHub</a>
+      <a href="/rss.xml">RSS</a>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-sun">☀</span>
+        <span class="icon-moon">☾</span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="article-header">
+    <h1 class="article-title">{{TITLE}}</h1>
+    <div class="article-meta">
+      <span>{{DATE_LONG}}</span>
+      <span>&middot;</span>
+      <span>{{READ_TIME}} min read</span>
+    </div>
+  </div>
+
+  <article class="article-content">
+    {{CONTENT}}
+  </article>
+
+  <div class="back-link">
+    <a href="/">&larr; Back to all posts</a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-name">Waju Abolarin</div>
+    <div class="footer-links">
+      <a href="https://github.com/WajuAbolarin">GitHub</a>
+      <a href="https://twitter.com/waju_abolarin">Twitter</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="footer-location">Berlin, Germany</div>
+    <div class="footer-prompt">> waju@blog ~ $</div>
+  </footer>
+
+  <script>
+    document.querySelector('.theme-toggle').addEventListener('click', function() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>
